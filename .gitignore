@@ -1,3 +1,6 @@
+# macOS
+.DS_Store
+
 # Flutter specific
 **/build/
 .dart_tool/
@@ -19,6 +22,15 @@
 **/android/gradlew.bat
 **/android/build/
 **/android/app/build/
+
+# iOS specific
+**/ios/Pods/
+**/ios/Podfile.lock
+**/ios/Flutter/Flutter.framework/
+**/ios/Flutter/Flutter.podspec
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/App.framework/
+**/ios/Flutter/App.podspec
 
 # Web specific
 **/web/packages/
@@ -75,10 +87,6 @@ $RECYCLE.BIN/
 node_modules/
 android/app/src/main/assets/flutter_assets/
 ios/Flutter/Flutter.xcworkspace/
-.vscode/
-
-# macOS
-.DS_Store
 
 # Flutter IntelliJ/Android Studio plugin
 .idea/

@@ -38,7 +38,7 @@ class _OTPVerificationPageState extends State<OTPVerificationPage> {
                       width: 200,
                       height: 150,
                       child: const Image(
-                        image: AssetImage("assets/logo.jpg"),
+                        image: AssetImage("assets/images/logo.jpg"),
                         width: 160,
                         height: 150,
                       ),
@@ -185,7 +185,7 @@ class _OTPVerificationForgotPasswordState
                       width: 200,
                       height: 150,
                       child: const Image(
-                        image: AssetImage("assets/logo.jpg"),
+                        image: AssetImage("assets/images/logo.jpg"),
                         width: 160,
                         height: 150,
                       ),
