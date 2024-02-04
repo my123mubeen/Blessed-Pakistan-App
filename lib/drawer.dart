@@ -1,12 +1,13 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:blessed_pakistan/Add_Property/property.dart';
 import 'package:blessed_pakistan/Authentication/login.dart';
 import 'package:blessed_pakistan/Home.dart';
 import 'package:blessed_pakistan/global.dart';
 import 'package:blessed_pakistan/toaster.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:blessed_pakistan/Tabs/AddPropertyPage.dart';
+// import 'package:blessed_pakistan/Tabs/AddPropertyPage.dart';
 import 'package:blessed_pakistan/Tabs/FavoritesPage.dart';
 import 'package:blessed_pakistan/Tabs/NewsProjectsPage.dart';
 import 'package:blessed_pakistan/Tabs/SavedSearchesPage.dart';
@@ -45,7 +46,7 @@ class _MyDrawerScreenState extends State<MyDrawerScreen> {
                       width: 80,
                       height: 80,
                       child: const Image(
-                        image: AssetImage("assets/logo.jpg"),
+                        image: AssetImage("assets/images/logo.jpg"),
                       ),
                     ),
                     Padding(
@@ -119,7 +120,7 @@ class _MyDrawerScreenState extends State<MyDrawerScreen> {
             MyHomePage(title: 'title'),
             alwaysActive: true,
           ),
-          buildDrawerItem('Add Property', Icons.add_rounded, AddPropertyPage()),
+          buildDrawerItem('Add Property', Icons.add_rounded, AddProperty()),
           buildDrawerItem('Search Properties', Icons.search_rounded,
               SearchPropertiesPage()),
           buildDrawerItem(
