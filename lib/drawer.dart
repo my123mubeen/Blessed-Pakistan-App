@@ -26,6 +26,7 @@ class _MyDrawerScreenState extends State<MyDrawerScreen> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      // surfaceTintColor: Colors.white,
       child: ListView(
         // padding: EdgeInsets.all(1.0),
         children: <Widget>[
@@ -82,7 +83,8 @@ class _MyDrawerScreenState extends State<MyDrawerScreen> {
                                     10), // Adjust the radius as needed
                               ),
                               side: BorderSide(
-                                  color: Colors.blue.shade600, width: 2),
+                                  color: Colors.indigoAccent.shade700,
+                                  width: 2),
                               padding: EdgeInsets.all(15),
                               backgroundColor: Colors.white,
                             ),
@@ -100,7 +102,7 @@ class _MyDrawerScreenState extends State<MyDrawerScreen> {
                                 ),
                                 Icon(
                                   CupertinoIcons.right_chevron,
-                                  color: Colors.blue.shade700,
+                                  color: Colors.indigoAccent.shade700,
                                   size: 15,
                                 )
                               ],
@@ -131,7 +133,7 @@ class _MyDrawerScreenState extends State<MyDrawerScreen> {
                 ? Padding(
                     padding: const EdgeInsets.only(top: 50),
                     child: Container(
-                      width: 150,
+                      width: 180,
                       padding: EdgeInsets.symmetric(horizontal: 25),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30)),
@@ -151,29 +153,32 @@ class _MyDrawerScreenState extends State<MyDrawerScreen> {
                             borderRadius: BorderRadius.circular(
                                 10), // Adjust the radius as needed
                           ),
-                          side:
-                              BorderSide(color: Colors.blue.shade600, width: 2),
+                          side: BorderSide(
+                              color: Colors.indigoAccent.shade700, width: 2),
                           padding: EdgeInsets.all(15),
                           backgroundColor: Colors.white,
                         ),
-                        child: Row(
-                          children: [
-                            Text(
-                              'Logout',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 14,
+                        child: Center(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Logout',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 14,
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              width: 8,
-                            ),
-                            Icon(
-                              Icons.exit_to_app_rounded,
-                              color: Colors.blue.shade700,
-                              size: 15,
-                            )
-                          ],
+                              SizedBox(
+                                width: 8,
+                              ),
+                              Icon(
+                                Icons.exit_to_app_rounded,
+                                color: Colors.blue.shade700,
+                                size: 15,
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -195,7 +200,7 @@ class _MyDrawerScreenState extends State<MyDrawerScreen> {
           ? const EdgeInsets.only(right: 16, bottom: 5)
           : const EdgeInsets.only(right: 16, bottom: 5),
       decoration: BoxDecoration(
-        color: isSelected ? Colors.blue[600] : Colors.transparent,
+        color: isSelected ? Colors.indigoAccent.shade700 : Colors.transparent,
         borderRadius: isSelected
             ? const BorderRadius.only(
                 topRight: Radius.circular(26),

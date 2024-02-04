@@ -4,13 +4,7 @@ import 'package:blessed_pakistan/toaster.dart';
 import 'package:flutter/material.dart';
 import 'package:blessed_pakistan/Authentication/OTP_Verification.dart';
 import 'package:blessed_pakistan/Authentication/login.dart';
-// import 'package:blessed_pakistan/Dart_Backend/backend.dart';
 import 'package:blessed_pakistan/Dart_Backend/backend.dart';
-// import 'package:top_snackbar_flutter/custom_snack_bar.dart';
-// import 'package:top_snackbar_flutter/tap_bounce_container.dart';
-// import 'package:top_snackbar_flutter/top_snack_bar.dart';
-// import 'package:show_top_snackbar/show_top_snackbar.dart';
-// import 'package:show_top_snackbar/snack_bar.dart';
 
 class ShowSignUpBottomSheet {
   // Declare text editing controllers for each input field
@@ -50,7 +44,7 @@ class ShowSignUpBottomSheet {
                   child: IconButton(
                     icon: Icon(
                       Icons.arrow_back,
-                      color: Colors.blue.shade600,
+                      color: Colors.indigoAccent.shade700,
                     ),
                     onPressed: () {
                       Navigator.pop(context);
@@ -169,7 +163,7 @@ class ShowSignUpBottomSheet {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      backgroundColor: Colors.blue[700],
+                      backgroundColor: Colors.indigoAccent.shade700,
                     ),
                     onPressed: () async {
                       // Retrieve values from the controllers
@@ -240,87 +234,6 @@ class ShowSignUpBottomSheet {
                     ),
                   ),
                 ),
-                // Container(
-                //   width: double.infinity,
-                //   height: 60,
-                //   margin: const EdgeInsets.only(top: 20),
-                //   child: ElevatedButton(
-                //     style: ElevatedButton.styleFrom(
-                //         shape: RoundedRectangleBorder(
-                //           borderRadius: BorderRadius.circular(10),
-                //         ),
-                //         backgroundColor: Colors.blue[700]),
-                //     onPressed: () async {
-                //       // Retrieve values from the controllers
-                //       final String username = usernameController.text;
-                //       final String email = emailController.text;
-                //       final String userType = userTypeController.text;
-                //       print(username);
-                //       print(email);
-                //       print(userType);
-
-                //       try {
-                //         if (!username.isEmpty ||
-                //             !email.isEmpty ||
-                //             !userType.isEmpty) {
-                //           final app_service = AppService();
-                //           // Perform your sign-up logic here using the retrieved values
-                //           String generatedOTP = await app_service
-                //               .sendVerificationEmail(username, email);
-
-                //           if (generatedOTP ==
-                //               'Account already exists. Please log in or use a different email.') {
-                //             // Account does not exist, show message
-                //             print(generatedOTP);
-                //           } else {
-                //             final dataToSend = {
-                //               'username': username,
-                //               'email': email,
-                //               'userType': userType,
-                //               'otp': generatedOTP,
-                //             };
-                //             // Navigate to OTP verification page
-                //             Navigator.push(
-                //               context,
-                //               MaterialPageRoute(
-                //                 builder: (context) =>
-                //                     OTPVerificationForgotPassword(
-                //                   data: dataToSend,
-                //                 ),
-                //               ),
-                //             );
-                //             usernameController.clear();
-                //             emailController.clear();
-                //             userTypeController.clear();
-                //           }
-                //         } else {
-                //           print('Some fields are empty');
-                //         }
-                //       } catch (error) {
-                //         print(error);
-                //         usernameController.clear();
-                //         emailController.clear();
-                //         userTypeController.clear();
-                //       }
-                //     },
-                //     child: const Text(
-                //       'Sign Up',
-                //       style: TextStyle(color: Colors.white),
-                //     ),
-                //   ),
-                // ),
-                // TapBounceContainer(
-                //   // onTap: () {
-                //   //   showTopSnackBar(
-                //   //     context as OverlayState,
-                //   //     CustomSnackBar.info(
-                //   //       message: "Persistent SnackBar",
-                //   //     ),
-                //   //     persistent: true,
-                //   //   );
-                //   // },
-                //   child: buildButton(context, "Show persistent SnackBar"),
-                // ),
 
                 const SizedBox(
                   height: 20,
@@ -379,8 +292,8 @@ class ShowSignUpBottomSheet {
                           'Login with Email!',
                         ),
                         style: ButtonStyle(
-                          foregroundColor:
-                              MaterialStateProperty.all<Color>(Colors.blue),
+                          foregroundColor: MaterialStateProperty.all<Color>(
+                              Colors.indigoAccent.shade700),
                           overlayColor:
                               MaterialStateProperty.all<Color>(Colors.white),
                         ),

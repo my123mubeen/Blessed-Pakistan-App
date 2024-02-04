@@ -85,7 +85,7 @@ class _OTPVerificationPageState extends State<OTPVerificationPage> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          backgroundColor: Colors.blue[600],
+                          backgroundColor: Colors.indigoAccent.shade700,
                         ),
                         onPressed: () async {
                           // Handle OTP verification logic
@@ -231,7 +231,7 @@ class _OTPVerificationForgotPasswordState
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          backgroundColor: Colors.blue[600],
+                          backgroundColor: Colors.indigoAccent.shade700,
                         ),
                         onPressed: () {
                           // Handle OTP verification logic

@@ -1,6 +1,11 @@
 // ignore_for_file: deprecated_member_use, file_names, prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, avoid_print, unnecessary_import, unused_element
-import 'package:blessed_pakistan/appbar.dart';
+import 'package:blessed_pakistan/Tabs/AddPropertyPage.dart';
+import 'package:blessed_pakistan/Tabs/FavoritesPage.dart';
+import 'package:blessed_pakistan/Tabs/HomePage.dart';
+import 'package:blessed_pakistan/Tabs/NewsProjectsPage.dart';
+import 'package:blessed_pakistan/Tabs/SearchPropertiesPage.dart';
 import 'package:blessed_pakistan/drawer.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -13,8 +18,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MyHomePage(
-      title: 'Blessed Pakistan',
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: MyHomePage(
+        title: 'Blessed Pakistan',
+      ),
     );
   }
 }
@@ -29,237 +37,56 @@ class MyHomePage extends StatefulWidget {
 }
 
 String _selectedDrawerItem = ''; // Track selected drawer item
+int _currentIndex = 0;
 
+List<Color> tabColors = [
+  Colors.indigoAccent.shade700, // Home
+  Colors.orange, // Search
+  Colors.green, // Add
+  Colors.red, // Favorite
+  Colors.blue, // Person
+];
 
-
+final List<Widget> _screens = [
+  HomePageContent(),
+  SearchPropertiesPage(),
+  AddPropertyPage(),
+  FavoritesPage(),
+  NewsProjectsPage()
+];
 
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: MyAppBar(title: "Home Screen"),
-        drawer: MyDrawerScreen(),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Text(
-                'In Progress:',
-              ),
-              Text(
-                "Home Page",
-                style: Theme.of(context).textTheme.headline6,
-              ),
-            ],
+    return Scaffold(
+      // appBar: MyAppBar(title: 'Home Page'),
+      drawer: MyDrawerScreen(),
+      body: _screens[_currentIndex],
+      bottomNavigationBar: CurvedNavigationBar(
+        index: _currentIndex,
+        height: 50.0,
+        items: <Widget>[
+          Icon(
+            Icons.home,
+            size: 30,
+            color: Colors.white,
           ),
-        ),
+          Icon(Icons.search, size: 30, color: Colors.white),
+          Icon(Icons.add, size: 30, color: Colors.white),
+          Icon(Icons.favorite, size: 30, color: Colors.white),
+          Icon(Icons.person, size: 30, color: Colors.white),
+        ],
+        color: Colors.indigoAccent.shade700,
+        buttonBackgroundColor: Colors.indigoAccent.shade700,
+        backgroundColor: Colors.white,
+        animationCurve: Curves.easeInOut,
+        animationDuration: Duration(milliseconds: 300),
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
       ),
     );
   }
 }
-
-
-
-
-
-  // Widget buildDrawer() {
-  //   return Drawer(
-  //     child: ListView(
-  //       // padding: EdgeInsets.all(1.0),
-  //       children: <Widget>[
-  //         DrawerHeader(
-  //           decoration: BoxDecoration(
-  //             border: Border.all(color: Colors.transparent),
-  //             // color: Colors.blue[700],
-  //           ),
-  //           child: Column(
-  //             children: [
-  //               Row(
-  //                 crossAxisAlignment: CrossAxisAlignment.start,
-  //                 mainAxisAlignment: MainAxisAlignment.start,
-  //                 children: [
-  //                   Container(
-  //                     width: 80,
-  //                     height: 80,
-  //                     child: const Image(
-  //                       image: AssetImage("assets/logo.jpg"),
-  //                     ),
-  //                   ),
-  //                   Padding(
-  //                     padding: const EdgeInsets.only(top: 30.0),
-  //                     child: Text(
-  //                       'Blessed Pakistan',
-  //                       style: TextStyle(
-  //                           color: Colors.black,
-  //                           fontSize: 20,
-  //                           fontWeight: FontWeight.w900),
-  //                     ),
-  //                   ),
-  //                 ],
-  //               ),
-  //               Container(
-  //                 // width: 190,
-  //                 padding: EdgeInsets.symmetric(horizontal: 25),
-  //                 decoration:
-  //                     BoxDecoration(borderRadius: BorderRadius.circular(30)),
-  //                 child: ElevatedButton(
-  //                   onPressed: () {
-  //                     Navigator.pop(context);
-  //                     LoginBottomSheet.show(context);
-  //                   },
-  //                   style: ElevatedButton.styleFrom(
-  //                     side: BorderSide(color: Colors.blue.shade700, width: 2),
-  //                     padding: EdgeInsets.all(15),
-  //                     backgroundColor: Colors.white,
-  //                   ),
-  //                   child: Row(
-  //                     children: [
-  //                       Text(
-  //                         'Login or Create Account',
-  //                         style: TextStyle(
-  //                           color: Colors.black,
-  //                           fontSize: 14,
-  //                         ),
-  //                       ),
-  //                       SizedBox(
-  //                         width: 8,
-  //                       ),
-  //                       Icon(
-  //                         CupertinoIcons.right_chevron,
-  //                         color: Colors.blue.shade700,
-  //                         size: 15,
-  //                       )
-  //                     ],
-  //                   ),
-  //                 ),
-  //               ),
-  //             ],
-  //           ),
-  //         ),
-  //         buildDrawerItem(
-  //           'Home',
-  //           Icons.home_rounded,
-  //           MyHomePage(title: 'title'),
-  //           alwaysActive: true,
-  //         ),
-  //         buildDrawerItem('Add Property', Icons.add_rounded, AddPropertyPage()),
-  //         buildDrawerItem('Search Properties', Icons.search_rounded,
-  //             SearchPropertiesPage()),
-  //         buildDrawerItem(
-  //             'News Projects', Icons.add_rounded, NewsProjectsPage()),
-  //         buildDrawerItem('Saved Searches', Icons.saved_search_rounded,
-  //             SavedSearchesPage()),
-  //         buildDrawerItem('Favorites', Icons.favorite_rounded, FavoritesPage()),
-  //         // Add more items as needed
-  //       ],
-  //     ),
-  //   );
-  // }
-
-  // Container buildDrawerItem(String title, IconData icon, Widget routeName,
-  //     {bool alwaysActive = false}) {
-  //   bool isSelected = _selectedDrawerItem == title || alwaysActive;
-
-  //   return Container(
-  //     margin:
-  //         isSelected ? EdgeInsets.only(right: 16) : EdgeInsets.only(right: 16),
-  //     decoration: BoxDecoration(
-  //       color: isSelected ? Colors.blue[700] : Colors.transparent,
-  //       borderRadius: isSelected
-  //           ? BorderRadius.only(
-  //               topRight: Radius.circular(26),
-  //               bottomRight: Radius.circular(26),
-  //             )
-  //           : BorderRadius.only(
-  //               topRight: Radius.circular(26),
-  //               bottomRight: Radius.circular(26),
-  //             ),
-  //     ),
-  //     child: ListTile(
-  //       tileColor: Colors.transparent,
-  //       selectedTileColor: Colors.blue[700],
-  //       title: Text(
-  //         title,
-  //         style: isSelected
-  //             ? TextStyle(
-  //                 color: Colors.white,
-  //                 fontSize: 16,
-  //               )
-  //             : TextStyle(
-  //                 color: Colors.grey[800],
-  //                 fontSize: 16,
-  //               ),
-  //       ),
-  //       leading: Icon(
-  //         icon,
-  //         color: isSelected ? Colors.white : Colors.grey[800],
-  //       ),
-  //       onTap: () {
-  //         // Handle drawer item click
-  //         setState(() {
-  //           _selectedDrawerItem = title;
-  //         });
-  //         Navigator.pop(context); // Close the drawer
-  //         // Add navigation logic here if needed
-  //         Navigator.push(
-  //             context, MaterialPageRoute(builder: (context) => routeName));
-  //       },
-  //     ),
-  //   );
-  // }
-
-//   Container buildDrawerItem(String title, IconData icon, Widget routeName) {
-//     return Container(
-//       margin: _selectedDrawerItem == title
-//           ? EdgeInsets.only(right: 16)
-//           : EdgeInsets.only(right: 16), // Add padding from the right
-//       decoration: BoxDecoration(
-//         color: _selectedDrawerItem == title
-//             ? Colors.blue[700]
-//             : Colors.transparent,
-//         borderRadius: _selectedDrawerItem == title
-//             ? BorderRadius.only(
-//                 topRight: Radius.circular(26),
-//                 bottomRight: Radius.circular(26),
-//               )
-//             : BorderRadius.only(
-//                 topRight: Radius.circular(26),
-//                 bottomRight: Radius.circular(26),
-//               ),
-//       ),
-//       child: ListTile(
-//         tileColor: Colors.transparent,
-//         selectedTileColor: Colors.blue[700],
-//         title: Text(
-//           title,
-//           style: _selectedDrawerItem == title
-//               ? TextStyle(
-//                   color: Colors.white,
-//                   fontSize: 16,
-//                 )
-//               : TextStyle(
-//                   color: Colors.grey[800],
-//                   fontSize: 16,
-//                 ),
-//         ),
-//         leading: Icon(
-//           icon,
-//           color: Colors.white,
-//         ),
-//         onTap: () {
-//           // Handle drawer item click
-//           setState(() {
-//             _selectedDrawerItem = title;
-//           });
-//           Navigator.pop(context); // Close the drawer
-//           // Add navigation logic here if needed
-//           print(routeName);
-//           Navigator.push(
-//               context, MaterialPageRoute(builder: (context) => routeName));
-//         },
-//       ),
-//     );
-//   }
-// }

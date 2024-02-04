@@ -232,9 +232,9 @@ class UserRepository {
     return 'User does not exist';
   }
 
-  Future<bool> loginUser(String email, String password) async {
+  Future<Map<String, dynamic>?> loginUser(String email, String password) async {
     final collection = Db_Connection.instance.collection('users');
-    final user = await collection.findOne({'email': email});
+    Map<String, dynamic>? user = await collection.findOne({'email': email});
 
     if (user != null) {
       // User found in the database, check hashed password
@@ -248,13 +248,11 @@ class UserRepository {
         GLOBAL.username = user['username'];
         GLOBAL.email = user['email'];
         GLOBAL.role = user['role'];
-        return true;
+        return user;
       }
     }
-
     // Invalid email or password
-    return false;
+    return null;
   }
-
   // Add other user-related operations (find, update, delete) here
 }

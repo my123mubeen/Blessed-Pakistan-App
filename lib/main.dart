@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: SplashScreen(),
+
       // const MyHomePage(title: 'Home Page'),
     );
   }

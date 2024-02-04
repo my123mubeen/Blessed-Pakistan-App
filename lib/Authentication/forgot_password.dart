@@ -29,14 +29,12 @@ class ForgotPasswordScreen extends StatelessWidget {
                     height: 150,
                   ),
                 ),
-                const Center(
-                  child: Text(
-                    "Enter your email to reset the password",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20),
-                  ),
+                Text(
+                  "Enter email address reset password",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20),
                 ),
                 SizedBox(height: 20),
                 Container(
@@ -68,7 +66,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        backgroundColor: Colors.blue[600]),
+                        backgroundColor: Colors.indigoAccent.shade700),
                     onPressed: () async {
                       // Retrieve values from the controllers
                       // final String username = usernameController.text;

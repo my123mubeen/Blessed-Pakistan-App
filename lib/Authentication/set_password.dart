@@ -143,7 +143,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      backgroundColor: Colors.blue[600]),
+                      backgroundColor: Colors.indigoAccent.shade700),
                   onPressed: () async {
                     print(widget.username);
                     print(widget.email);
@@ -339,7 +339,7 @@ class _ChangePassWordState extends State<ChangePassWord> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      backgroundColor: Colors.blue[600]),
+                      backgroundColor: Colors.indigoAccent.shade700),
                   onPressed: () async {
                     print(widget.email);
                     // Check if passwords match

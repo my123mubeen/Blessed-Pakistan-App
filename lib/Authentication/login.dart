@@ -1,4 +1,4 @@
-// ignore_for_file: sort_child_properties_last, sized_box_for_whitespace, unused_element, no_leading_underscores_for_local_identifiers, prefer_is_not_empty, avoid_print, prefer_const_constructors, use_key_in_widget_constructors, library_private_types_in_public_api, must_be_immutable, use_build_context_synchronously
+// ignore_for_file: sort_child_properties_last, sized_box_for_whitespace, unused_element, no_leading_underscores_for_local_identifiers, prefer_is_not_empty, avoid_print, prefer_const_constructors, use_key_in_widget_constructors, library_private_types_in_public_api, must_be_immutable, use_build_context_synchronously, unnecessary_brace_in_string_interps
 
 import 'package:blessed_pakistan/Authentication/forgot_password.dart';
 import 'package:blessed_pakistan/Authentication/signup.dart';
@@ -57,7 +57,7 @@ class _LoginBottomSheetContent extends StatelessWidget {
               child: IconButton(
                 icon: Icon(
                   Icons.arrow_back,
-                  color: Colors.blue.shade600,
+                  color: Colors.indigoAccent.shade700,
                 ),
                 onPressed: () {
                   Navigator.pop(context);
@@ -159,7 +159,7 @@ class _LoginBottomSheetContent extends StatelessWidget {
                 },
                 child: Text(
                   'Forgot Password?',
-                  style: TextStyle(color: Colors.blue[600]),
+                  style: TextStyle(color: Colors.indigoAccent.shade700),
                   textAlign: TextAlign.right,
                 ),
               ),
@@ -176,7 +176,7 @@ class _LoginBottomSheetContent extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    backgroundColor: Colors.blue[700]),
+                    backgroundColor: Colors.indigoAccent.shade700),
                 onPressed: () async {
                   // Retrieve values from the controllers
                   String email = emailController.text;
@@ -187,10 +187,10 @@ class _LoginBottomSheetContent extends StatelessWidget {
                     if (email.isNotEmpty && password.isNotEmpty) {
                       UserRepository userRepository =
                           UserRepository(Db_Connection);
-                      bool isLoggedIn =
+                      Map<String, dynamic>? isLoggedIn =
                           await userRepository.loginUser(email, password);
-
-                      if (isLoggedIn) {
+                      print(isLoggedIn);
+                      if (isLoggedIn != null) {
                         // Navigate to the next screen or perform any actions needed upon successful login
                         print('Login successful!');
                         Navigator.push(
@@ -213,7 +213,7 @@ class _LoginBottomSheetContent extends StatelessWidget {
                     }
                   } catch (error) {
                     print(error);
-                    SnackbarHelper.showError(context, '${error}');
+                    SnackbarHelper.showError(context, '$error');
                   }
                 },
                 child: const Text(
@@ -274,8 +274,8 @@ class _LoginBottomSheetContent extends StatelessWidget {
                       'Sign Up with Email!',
                     ),
                     style: ButtonStyle(
-                      foregroundColor:
-                          MaterialStateProperty.all<Color>(Colors.blue),
+                      foregroundColor: MaterialStateProperty.all<Color>(
+                          Colors.indigoAccent.shade700),
                       overlayColor:
                           MaterialStateProperty.all<Color>(Colors.white),
                     ),
