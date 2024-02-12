@@ -100,7 +100,7 @@ class _LoginBottomSheetContent extends StatelessWidget {
                   labelText: "Enter Email",
                   fillColor: Colors.white,
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25.0),
+                    borderRadius: BorderRadius.circular(10.0),
                     borderSide: const BorderSide(),
                   ),
                   //fillColor: Colors.green
@@ -124,7 +124,7 @@ class _LoginBottomSheetContent extends StatelessWidget {
                   labelText: "Enter Password",
                   fillColor: Colors.white,
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25.0),
+                    borderRadius: BorderRadius.circular(10.0),
                     borderSide: const BorderSide(),
                   ),
                   suffixIcon: IconButton(

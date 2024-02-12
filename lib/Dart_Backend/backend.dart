@@ -1,15 +1,19 @@
-// ignore_for_file: depend_on_referenced_packages, non_constant_identifier_names, avoid_print, avoid_types_as_parameter_names, camel_case_types
+// ignore_for_file: depend_on_referenced_packages, non_constant_identifier_names, avoid_print, avoid_types_as_parameter_names, camel_case_types, no_leading_underscores_for_local_identifiers
 
 import 'dart:convert';
 import 'dart:math';
 
+// import 'package:blessed_pakistan/Dashboard/RecentSearches/recentsearches.dart';
+import 'package:blessed_pakistan/Dart_Backend/models/recentsearches.dart';
 import 'package:crypto/crypto.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 import 'package:blessed_pakistan/Dart_Backend/models/user.dart';
+// import 'package:blessed_pakistan/Dart_Backend/models/recentsearches.dart';
 import 'package:blessed_pakistan/DbHelper/mongodb_connection.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
 import 'package:blessed_pakistan/global.dart';
+// import 'package:bson/bson.dart';
 
 class AppService {
   var Global_Data = GLOBAL();
@@ -81,49 +85,9 @@ class AppService {
     // Insert the new user into the 'users' collection
     await collection.insert(user.toJson());
   }
+
+  //  Recent Searches
 }
-
-// class Appservice_forgotpassword {
-//   Future<String> sendVerificationEmail(String email) async {
-//     var Global_Data = GLOBAL();
-//     // Replace the values below with your actual SMTP server and credentials
-//     final smtpServer = SmtpServer(
-//       'smtp.gmail.com',
-//       username: Global_Data.user,
-//       password: Global_Data.pass,
-//     );
-
-//     // Generate a random 6-digit OTP
-//     final otp = _generateOTP();
-
-//     final message = Message()
-//       ..from = Address(Global_Data.user, 'Umair Khan')
-//       ..recipients.add(email)
-//       ..subject = 'Account Verification'
-//       ..html = '''
-//         <p>Dear $username,</p>
-//         <p>Thank you for creating an account with our service.</p>
-//         <p>Your verification code is: <strong>$otp</strong></p>
-//         <p>If you did not create an account with us, please ignore this email.</p>
-//         <p>Thank you for using our service!</p>
-//       ''';
-
-//     try {
-//       final sendReport = await send(message, smtpServer);
-//       print('Message sent: ${sendReport.toString()}');
-//       return otp;
-//     } catch (e) {
-//       print('Error sending email: $e');
-//       // Handle errors or return an appropriate response
-//       throw Exception('Error sending email: $e');
-//     }
-//   }
-
-//   // Helper method to generate a random 6-digit OTP
-//   String _generateOTP() {
-//     Random random = Random();
-//     return (100000 + random.nextInt(900000)).toString();
-//   }
 
 class AppServiceForgotPassword {
   Future<String> sendVerificationEmail(String email) async {
@@ -186,6 +150,55 @@ Future<Map<String, dynamic>?> checkIfEmailExists(String email) async {
 
 class UserRepository {
   UserRepository(Db_Connection);
+
+  Future<List<searches>> getCartsByUserId(id) async {
+    final collection = Db_Connection.instance.collection('searches');
+    final cursor = collection.find(where.eq('userId', id));
+    final List<searches> recentsearches = [];
+
+    await for (var document in cursor) {
+      print("DOCUMENT LENGTH:");
+      print(document.length);
+      recentsearches.add(searches.fromJson(document));
+    }
+
+    return recentsearches;
+  }
+
+  String extractId(String objectId) {
+    print(objectId);
+    // Check if the provided string matches the expected ObjectId format
+    RegExp objectIdRegex = RegExp(r'^ObjectId\("([0-9a-fA-F]{24})"\)$');
+    RegExpMatch? match = objectIdRegex.firstMatch(objectId);
+    if (match != null) {
+      // Extract the id part from the matched string
+      String id = match.group(1)!;
+      return id;
+    } else {
+      // Return empty string if the provided string does not match the expected format
+      return '';
+    }
+  }
+
+  Future<Map<String, dynamic>?> fetchUserRecentSearches(String userId) async {
+    try {
+      String objectIdString = userId;
+      String hexString = objectIdString.substring(10, 34);
+      final collection = Db_Connection.instance.collection('searches');
+
+      final recentSearches = await collection
+          .find(where.eq('userid', hexString))
+          .toList(); // Convert stream to list
+
+      print(recentSearches); // Print the fetched data
+      return recentSearches.isNotEmpty
+          ? recentSearches.first
+          : null; // Return the fetched data or null if empty
+    } catch (e) {
+      print('Error fetching recent searches: $e');
+      return null; // Return null in case of an error
+    }
+  }
 
   Future<String> insertUser(
       String username, String email, String role, String password) async {

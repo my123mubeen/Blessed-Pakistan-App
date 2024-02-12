@@ -38,6 +38,16 @@ final List<Map<String, dynamic>> homeList = [
   }, // Using the same icon as House
 ];
 
+final List<Map<String, String>> homeListAreaSize = [
+  {"name": "5 Marla", "type": "Houses"},
+  {"name": "3 Marla", "type": "Houses"},
+  {"name": "7 Marla", "type": "Houses"},
+  {"name": "8 Marla", "type": "Houses"},
+  {"name": "10 Marla", "type": "Houses"},
+  {"name": "1 Kanal", "type": "Houses"},
+  {"name": "2 Kanal", "type": "Houses"},
+];
+
 final List<Map<String, dynamic>> plotList = [
   {
     'icon': FontAwesomeIcons.landmark,
@@ -65,6 +75,16 @@ final List<Map<String, dynamic>> plotList = [
   }, // Using a different icon
 ];
 
+final List<Map<String, String>> plotListAreaSize = [
+  {"name": "5 Marla", "type": "Plots"},
+  {"name": "3 Marla", "type": "Plots"},
+  {"name": "7 Marla", "type": "Plots"},
+  {"name": "8 Marla", "type": "Plots"},
+  {"name": "10 Marla", "type": "Plots"},
+  {"name": "1 Kanal", "type": "Plots"},
+  {"name": "2 Kanal", "type": "Plots"},
+];
+
 final List<Map<String, dynamic>> commercialList = [
   {
     'icon': FontAwesomeIcons.building,
@@ -87,4 +107,13 @@ final List<Map<String, dynamic>> commercialList = [
     'icon': FontAwesomeIcons.ellipsisH,
     'text': '... Others'
   }, // Using a different icon
+];
+
+final List<Map<String, String>> commercialsListAreaSize = [
+  {"name": "Less than 100", "type": "Shops"},
+  {"name": "100-200 Sq..", "type": "Shops"},
+  {"name": "200-300 Sq..", "type": "Shops"},
+  {"name": "300-400 Sq..", "type": "Shops"},
+  {"name": "400-500 Sq..", "type": "Shops"},
+  {"name": "More than..", "type": "Shops"},
 ];

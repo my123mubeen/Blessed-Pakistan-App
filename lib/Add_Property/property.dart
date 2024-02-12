@@ -84,12 +84,13 @@ class _AddPropertyState extends State<AddProperty>
 
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(239, 248, 246, 246),
+      backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
         // Add back button
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
+            Navigator.pop(context);
             // Handle back button pressed
           },
         ),
@@ -98,6 +99,8 @@ class _AddPropertyState extends State<AddProperty>
           IconButton(
             icon: const Icon(Icons.clear),
             onPressed: () {
+              Navigator.pop(context);
+
               // Handle clear button pressed
             },
           ),

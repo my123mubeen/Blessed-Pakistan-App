@@ -8,6 +8,7 @@ import 'package:blessed_pakistan/drawer.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void main() {
   runApp(MyApp());
@@ -39,53 +40,67 @@ class MyHomePage extends StatefulWidget {
 String _selectedDrawerItem = ''; // Track selected drawer item
 int _currentIndex = 0;
 
-List<Color> tabColors = [
-  Colors.indigoAccent.shade700, // Home
-  Colors.orange, // Search
-  Colors.green, // Add
-  Colors.red, // Favorite
-  Colors.blue, // Person
-];
-
 final List<Widget> _screens = [
   HomePageContent(),
+  NewsProjectsPage(),
   SearchPropertiesPage(),
-  AddPropertyPage(),
   FavoritesPage(),
-  NewsProjectsPage()
+  AddPropertyPage(),
 ];
 
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: MyAppBar(title: 'Home Page'),
       drawer: MyDrawerScreen(),
       body: _screens[_currentIndex],
       bottomNavigationBar: CurvedNavigationBar(
         index: _currentIndex,
         height: 50.0,
         items: <Widget>[
-          Icon(
-            Icons.home,
-            size: 30,
-            color: Colors.white,
-          ),
-          Icon(Icons.search, size: 30, color: Colors.white),
-          Icon(Icons.add, size: 30, color: Colors.white),
-          Icon(Icons.favorite, size: 30, color: Colors.white),
-          Icon(Icons.person, size: 30, color: Colors.white),
+          _buildNavItem(Icons.home, 'Home'),
+          _buildNavItem(FontAwesomeIcons.projectDiagram, 'Projects'),
+          _buildNavItem(Icons.search_rounded, 'Search'),
+          _buildNavItem(Icons.favorite, 'Favorite'),
+          _buildNavItem(Icons.person, 'Profile'),
         ],
         color: Colors.indigoAccent.shade700,
         buttonBackgroundColor: Colors.indigoAccent.shade700,
         backgroundColor: Colors.white,
         animationCurve: Curves.easeInOut,
-        animationDuration: Duration(milliseconds: 300),
+        animationDuration: Duration(milliseconds: 600),
         onTap: (index) {
           setState(() {
             _currentIndex = index;
           });
         },
+      ),
+    );
+  }
+
+  Widget _buildNavItem(IconData iconData, String label) {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // SizedBox(height: 10),
+            Icon(
+              iconData,
+              size: 20,
+              color: Colors.white,
+            ),
+            SizedBox(height: 4), // Adjust the spacing between icon and text
+            Text(
+              label,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 8, // Adjust the font size as needed
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
